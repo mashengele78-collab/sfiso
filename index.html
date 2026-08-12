@@ -1,12 +1,842 @@
 <!doctype html>
 <html lang="en-ZA">
 <head>
-<meta charset="utf-8">
-<title>Moved - jobready.za</title>
-<link rel="canonical" href="https://jobreadycv-za.github.io/">
-<meta http-equiv="refresh" content="0; url=https://jobreadycv-za.github.io/">
-<script>location.replace("https://jobreadycv-za.github.io/");</script>
-<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0B1220;color:#e6edf3;display:grid;place-items:center;height:100vh;margin:0;text-align:center}a{color:#C4A265}</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>jobreadycv.za — Faceless Content Playbook</title>
+  <meta name="description" content="Copy-paste faceless TikTok and Reels kit for jobreadycv.za" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0B1220;
+      --navy-2: #121A2B;
+      --navy-3: #1A2438;
+      --gold: #C4A265;
+      --gold-2: #E0C48A;
+      --cream: #F4EDE0;
+      --cream-dim: #cfc6b6;
+      --alert: #E85D4C;
+      --ok: #7DCEA0;
+      --line: rgba(196, 162, 101, 0.22);
+      --shadow: 0 24px 60px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(196,162,101,.12), transparent 50%),
+        radial-gradient(900px 500px at 100% 0%, rgba(232,93,76,.06), transparent 40%),
+        var(--navy);
+      color: var(--cream);
+      line-height: 1.55;
+    }
+    a { color: var(--gold-2); }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header.hero {
+      padding: 72px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kicker {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    h1, h2, h3, h4 { font-family: Fraunces, Georgia, serif; font-weight: 600; letter-spacing: -.02em; }
+    h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.05; margin: 14px 0 16px; }
+    h1 em { font-style: italic; color: var(--gold-2); }
+    .lede { font-size: 18px; max-width: 680px; color: var(--cream-dim); }
+    nav.toc {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(11,18,32,.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav.toc .wrap {
+      display: flex; gap: 8px; overflow: auto; padding: 10px 16px;
+    }
+    nav.toc a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--cream);
+      font-size: 13px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--navy-2);
+    }
+    nav.toc a:hover { border-color: var(--gold); color: var(--gold-2); }
+    section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+    h2 { font-size: clamp(26px, 4vw, 38px); margin: 0 0 10px; }
+    .sub { color: var(--cream-dim); margin: 0 0 28px; max-width: 720px; }
+    .grid { display: grid; gap: 16px; }
+    .g2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .g3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card {
+      background: linear-gradient(180deg, var(--navy-2), #0e1626);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .card h3 { margin: 0 0 8px; font-size: 20px; }
+    .muted { color: var(--cream-dim); }
+    .pill {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      padding: 3px 8px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .prompt {
+      position: relative;
+      background: #070c16;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 14px 44px;
+      overflow: auto;
+    }
+    .prompt pre {
+      margin: 0;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #e9e2d4;
+    }
+    .copy {
+      position: absolute;
+      right: 10px; bottom: 10px;
+      background: var(--gold);
+      color: var(--navy);
+      border: 0;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .copy.done { background: var(--ok); }
+    details.pack {
+      background: var(--navy-2);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      margin: 0 0 14px;
+      overflow: hidden;
+    }
+    details.pack[open] { border-color: rgba(196,162,101,.45); }
+    details.pack summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+    details.pack summary::-webkit-details-marker { display: none; }
+    .num {
+      width: 42px; height: 42px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: var(--navy-3);
+      color: var(--gold);
+      font-family: Fraunces, serif;
+      font-weight: 700;
+    }
+    .meta { font-size: 13px; color: var(--cream-dim); }
+    .chev { color: var(--gold); font-size: 20px; }
+    .pack-body { padding: 0 20px 22px; display: grid; gap: 14px; }
+    .label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin: 0 0 6px; font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--gold); font-weight: 600; }
+    .tag { color: var(--gold-2); }
+    footer { padding: 40px 0 80px; color: var(--cream-dim); }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 28px; }
+    .hero-stats div { min-width: 140px; }
+    .hero-stats b { display: block; font-family: Fraunces, serif; font-size: 28px; color: var(--gold-2); }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: var(--navy); text-decoration: none;
+      padding: 10px 14px; border-radius: 999px; font-weight: 700; font-size: 14px;
+    }
+    .btn.ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); }
+    ul.tight { margin: 0; padding-left: 18px; }
+    ul.tight li { margin: 4px 0; }
+    @media (max-width: 640px) {
+      details.pack summary { grid-template-columns: auto 1fr; }
+      .chev { display: none; }
+    }
+  </style>
 </head>
-<body><div><p>This site has moved.</p><p><a href="https://jobreadycv-za.github.io/">jobreadycv-za.github.io</a></p></div></body>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="kicker">jobreadycv.za · Faceless Content OS</div>
+      <h1>Prompts that book<br><em>WhatsApp conversations.</em></h1>
+      <p class="lede">A reusable, copy-paste kit for faceless TikToks and Reels: brand brain, 10 full video packs, visual prompts, captions, hashtags, and the generators that make next month’s content in an afternoon.</p>
+      <div class="hero-stats">
+        <div><b>10</b><span class="muted">ready-to-film packs</span></div>
+        <div><b>5</b><span class="muted">master AI prompts</span></div>
+        <div><b>30</b><span class="muted">day calendar</span></div>
+        <div><b>R0</b><span class="muted">to start filming tonight</span></div>
+      </div>
+      <div class="row-actions">
+        <a class="btn" href="#packs">Open the 10 packs</a>
+        <a class="btn ghost" href="#brain">Copy the brand brain</a>
+        <a class="btn ghost" href="FACELESS_CONTENT_PLAYBOOK.md">Full markdown file</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <div class="wrap">
+      <a href="#start">Start</a>
+      <a href="#brain">Brand brain</a>
+      <a href="#generators">Generators</a>
+      <a href="#packs">10 packs</a>
+      <a href="#hooks">More hooks</a>
+      <a href="#captions">Captions</a>
+      <a href="#calendar">30 days</a>
+      <a href="#produce">Produce</a>
+      <a href="#convert">Convert</a>
+    </div>
+  </nav>
+
+  <section id="start">
+    <div class="wrap">
+      <h2>Ship one video in 25 minutes</h2>
+      <p class="sub">No face. No studio. Navy, gold, cream. One pain, one tactic, one CTA.</p>
+      <div class="grid g3">
+        <article class="card"><span class="pill">01</span><h3>Pick or generate</h3><p class="muted">Use a pack below, or paste Prompt A into ChatGPT / Gemini and ask for a batch.</p></article>
+        <article class="card"><span class="pill">02</span><h3>Voice + B-roll</h3><p class="muted">CapCut TTS, slightly fast SA English. Stills from the AI prompts or Pexels searches in each pack.</p></article>
+        <article class="card"><span class="pill">03</span><h3>Hook frame + WhatsApp</h3><p class="muted">Big cream type on navy in the first frame. End card: jobreadycv.za · link in bio.</p></article>
+      </div>
+      <div class="grid g2" style="margin-top:16px">
+        <article class="card">
+          <h3>Brand lock</h3>
+          <ul class="tight muted">
+            <li>Navy <code>#0B1220</code> · Gold <code>#C4A265</code> · Cream <code>#F4EDE0</code></li>
+            <li>SA English: organisation, programme, labour</li>
+            <li>Never promise a job. Promise a readable CV.</li>
+            <li>WhatsApp: +27 68 251 0828</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Voice in one line</h3>
+          <p class="muted">A sharp older cousin in Braam who already got the offer — specific, slightly dry, never hustle-porn.</p>
+          <p class="muted">Series stickers: <span class="tag">FIX THIS BEFORE YOU APPLY</span> · <span class="tag">SA INTERVIEW, DECODED</span> · <span class="tag">SCAM OR REAL?</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="brain">
+    <div class="wrap">
+      <h2>1. Brand voice &amp; strategy prompt</h2>
+      <p class="sub">Paste this at the top of every ChatGPT / Gemini chat before you ask for hooks, scripts, or captions.</p>
+      <div class="prompt" data-copy>
+        <pre>You are the content director and ghostwriter for jobreadycv.za (also called jobready.za).
+
+BRAND
+- South African career studio: ATS-ready CVs, cover letters, LinkedIn rewrites, interview briefs.
+- Faceless short-form only: TikTok + Instagram Reels, 9:16, 20–45 seconds.
+- Conversion: WhatsApp chat (https://wa.me/27682510828), not a long form. Soft CTA. Never “guaranteed job”.
+- Pricing context (use only when useful): Starter free · Pro R99/mo · Career R199/mo.
+- Site: https://jobreadycv-za.github.io/
+
+AUDIENCE
+- SA job seekers: final-year students, graduates, learnership hunters, early-career (0–5 years), career-pivots.
+- Cities: Joburg, Tshwane, Cape Town, eThekwini, and everyone applying from a township or a secondary city with expensive data.
+- They are tired, often ghosted, sometimes broke, and allergic to American career-coach fluff.
+
+VOICE
+- Sharp older cousin who already got the offer.
+- Simple, spoken, Gen-Z fluent, adult brain. SA English spelling.
+- Specific: PNet, Careers24, CareerJunction, SAP SuccessFactors, Oracle, Workday, Sandton, learnerships, EE, NQF, rands, WhatsApp scams, load-shedding.
+- One idea per video. Proof over duties. Robots before humans.
+- Ban: hustle-porn, “dream job” promises, US “1-page resume” advice presented as local truth, slang pile-ons, emojis in the VOICEOVER.
+
+STRUCTURE FOR EVERY SCRIPT
+1. Hook in under 8 words on-screen + first spoken line that creates a flinch.
+2. Name the SA-specific pain in 1 line.
+3. Teach ONE tactic with a before → after example.
+4. Close with a save / comment-keyword / WhatsApp CTA.
+5. 90–130 words of voiceover. Short sentences. Read-aloud time 28–40 seconds.
+
+WHEN I ASK YOU TO WRITE, ALWAYS RETURN
+- Video title
+- Pillar + funnel stage (aware / considering / ready)
+- On-screen hook (max 8 words)
+- Spoken hook
+- Full timed voiceover
+- 5–7 on-screen text cards
+- 4 AI image/video prompts (same visual world)
+- 5 Pexels/CapCut B-roll search terms
+- Caption (first line = hook)
+- 3 comment-bait lines + 1 pinned comment
+- Hashtag block (3 big / 6 mid / 6 SA-niche)
+- WhatsApp prefilled message
+
+Visual world: dark navy #0B1220, champagne gold #C4A265, cream paper, hands-only or over-shoulder, Joburg/Cape Town light, printed CVs, laptop, WhatsApp chat UI, no readable real ID numbers, no celebrity faces, no US office clichés as the hero.
+
+Wait for my topic. If I say “batch 7”, invent 7 new videos I have not already made, all different pillars.</pre>
+        <button class="copy" type="button">Copy prompt</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="generators">
+    <div class="wrap">
+      <h2>Infinite-content generators</h2>
+      <p class="sub">After the brand brain is in the chat, paste these to keep producing.</p>
+      <div class="grid g2">
+        <div>
+          <div class="label">Prompt A — 10 new ideas</div>
+          <div class="prompt" data-copy>
+            <pre>Using the jobreadycv.za brand brain already in this chat, give me 10 NEW faceless Reel ideas for [THIS WEEK’S THEME: e.g. graduate season / learnerships / interview week / scam week].
+
+For each idea provide:
+1. Working title
+2. Pain in one SA-specific sentence
+3. On-screen hook (≤8 words)
+4. Why it will get saves or comments
+5. Soft CTA type (save / comment keyword / WhatsApp)
+6. Pillar
+
+Do not repeat: 6-second scan, ATS robots, weakness question, no-experience CV, tell me about yourself, US vs SA CV, ID/photo/marital status, tailoring in 5 minutes, LinkedIn headline, WhatsApp job scams — unless you have a genuinely new angle.</pre>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </div>
+        <div>
+          <div class="label">Prompt B — full pack from a hook</div>
+          <div class="prompt" data-copy>
+            <pre>Write a complete jobreadycv.za faceless Reel from this hook:
+
+HOOK: [paste]
+
+Audience: [graduate / learnership / 2–5 years / all]
+Length: [25s / 35s / 45s]
+
+Return the full pack: timed VO, text cards, 4 visual prompts, 5 B-roll searches, caption, pinned comment, hashtags, WhatsApp line. SA English. One tactic only.</pre>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </div>
+        <div>
+          <div class="label">Prompt C — visual system</div>
+          <div class="prompt" data-copy>
+            <pre>Faceless South African career-content still, vertical 9:16. Premium editorial photo, not illustration. Dark navy world (#0B1220) with champagne-gold (#C4A265) practical light. Cream paper documents, a modern laptop, a black ballpoint, one coffee. Subject is anonymous: hands, over-shoulder, nape, silhouette against a window. Setting reads as Johannesburg or Cape Town — concrete, winter sun or late-afternoon gold, a hint of city through glass — never a generic US open-plan office. Shallow depth of field, 35mm, photorealistic, filmic grain, no watermark, no readable ID numbers, no logos, no text unless I specify it. Mood: focused, expensive, hopeful — not corporate stock-smile.
+
+Scene: [DESCRIBE THE BEAT]</pre>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </div>
+        <div>
+          <div class="label">Prompt D — captions</div>
+          <div class="prompt" data-copy>
+            <pre>Write 3 caption options for this jobreadycv.za Reel.
+
+Script:
+[paste]
+
+Option 1: punchy (3 lines)
+Option 2: story (5–7 lines)
+Option 3: save-bait list
+
+Each must: open with the hook as line 1, sound like a human in SA, include one CTA (comment CV / save this / WhatsApp link in bio), no more than 2 emojis, then a hashtag block: 3 big + 6 mid + 6 SA-niche.</pre>
+            <button class="copy" type="button">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px">
+        <div class="label">Prompt E — comment to booking</div>
+        <div class="prompt" data-copy>
+          <pre>A viewer commented: “[paste comment]”
+
+Write:
+1. A public reply (1–2 lines, on-brand, invites a DM)
+2. A DM opener
+3. A 4-message WhatsApp sequence that diagnoses their situation (role, city, current CV yes/no) and offers Starter free or Pro R99/mo without being salesy.</pre>
+          <button class="copy" type="button">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packs">
+    <div class="wrap">
+      <h2>2–4. Ten video packs</h2>
+      <p class="sub">Hook, full script, AI visuals, caption, hashtags. Open a pack, copy the block you need, film.</p>
+
+      <!-- PACK 1 -->
+      <details class="pack" open>
+        <summary>
+          <div class="num">01</div>
+          <div>
+            <strong>The 6-second Sandton scan</strong>
+            <div class="meta">CV Craft · ~34s · FIX THIS BEFORE YOU APPLY</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div>
+            <div class="label">On-screen hook</div>
+            <div class="prompt" data-copy><pre>THEY REJECT YOU IN 6 SECONDS</pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <div>
+            <div class="label">Voiceover</div>
+            <div class="prompt" data-copy><pre>A Sandton recruiter just killed your CV in six seconds. Not because you are unqualified. Because the top third of page one did no work. They look at your name, your city, your title, and one proof line. If that block is a life story, they swipe. Fix it tonight: city plus province, a title that matches the advert, and one sentence with a number. Not “hardworking graduate”. “BCom graduate, Tshwane — cut month-end close from nine days to five at my internship.” Six seconds. Make them flinch.</pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <div>
+            <div class="label">On-screen cards</div>
+            <div class="prompt" data-copy><pre>1. THEY REJECT YOU IN 6 SECONDS
+2. not you — page one
+3. name · city · title · one number
+4. ✕ hardworking graduate
+5. ✓ “cut close from 9 days to 5”
+6. jobreadycv.za · Get job-ready.</pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <div>
+            <div class="label">AI visual prompts (prepend the visual system)</div>
+            <div class="prompt" data-copy><pre>1. Over-shoulder of a recruiter at a dark oak desk in a Sandton high-rise, winter Joburg light through floor-to-ceiling glass, a printed cream CV on the desk, a gold watch and a black pen, faceless, 9:16, navy shadows, champagne rim light.
+2. Extreme close-up of the top third of a cream CV: name block, “Tshwane, Gauteng”, a job title, one bold proof sentence. Hands in frame holding a gold pen. Shallow focus. No readable ID number.
+3. Split scene: left = messy crumpled CV under harsh white light (cold); right = clean cream CV on navy folder under warm gold light. Faceless. 9:16.
+4. Laptop screen glow on anonymous hands in a dim Pretoria apartment at night, WhatsApp chat open (no real numbers), city sodium lights in the window. Hopeful, not sad.</pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <div>
+            <div class="label">Caption + hashtags</div>
+            <div class="prompt" data-copy><pre>They do not read your whole CV. They hunt for a reason to stop.
+Name. City. Title. One number. That’s the whole game in six seconds.
+Want the page-one rewrite? Comment SCAN or WhatsApp us — link in bio.
+jobreadycv.za
+
+#JobTok #CareerTok #ResumeTips #CVTips #InterviewTips #JobSearch #ATS #LinkedInTips #GraduateJobs #JobSearchSA #CareerTipsSA #CVWritingSA #PNet #Careers24 #GetHiredSA</pre><button class="copy" type="button">Copy</button></div>
+          </div>
+          <p class="meta">Pin: Comment SCAN and I’ll DM the 6-second page-one checklist. Pexels: recruiter desk · hands reviewing resume · Johannesburg skyline · stopwatch · pen ticking paper.</p>
+        </div>
+      </details>
+
+      <!-- PACK 2 -->
+      <details class="pack">
+        <summary>
+          <div class="num">02</div>
+          <div>
+            <strong>The robot never saw you (ATS)</strong>
+            <div class="meta">CV Craft · ~36s · YOUR CV IS NOT SHY</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>THE ROBOT NEVER SAW YOU</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>You didn’t get rejected. The robot never even opened you. PNet, Careers24, the banks, the big retailers — most of them run your CV through software before a human exists. Columns, icons, text boxes, a photo in the header? The parser reads a blank page. That’s why you can be perfect for the role and still get silence. Tonight: one column. Normal headings. The same words as the advert. Save as PDF unless they asked for Word. You are not invisible. Your file is.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. A glowing laptop in a dark room, abstract robotic scan-lines moving down a cream CV, navy atmosphere, champagne light leaks, faceless hands at the keyboard, 9:16, cinematic.
+2. Close-up of a beautifully designed colourful Canva CV being fed into a paper shredder, gold light, dark navy background, anonymous hands, photoreal.
+3. Clean single-column cream CV on a navy desk next to a phone showing a job advert on a SA job board (blur the brand if needed), coffee, gold pen.
+4. Macro of a progress bar / ATS score ticking from 41 to 94 on a laptop, reflected in anonymous glasses or a dark window, Joburg night.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>If 40 applications came back as silence, stop blaming your degree for a second.
+A lot of SA corporates never see the pretty CV. The parser sees a blank page.
+One column. Normal headings. Advert words. PDF.
+Comment ROBOT and I’ll send the ATS checklist. jobreadycv.za
+
+#JobTok #CareerTok #ATS #CVTips #JobSearch #ResumeTips #GraduateJobs #LinkedInTips #CareerAdvice #JobSearchSA #CareerTipsSA #PNet #Careers24 #CareerJunction #CVWritingSA</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 3 -->
+      <details class="pack">
+        <summary>
+          <div class="num">03</div>
+          <div>
+            <strong>Stop saying “I’m a perfectionist”</strong>
+            <div class="meta">Interview · ~38s · SA INTERVIEW, DECODED</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>STOP SAYING PERFECTIONIST</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>If your weakness is “I’m a perfectionist”, they have already moved on. They are not hunting a tragic flaw. They are hunting self-awareness plus proof you fix things. Use this three-line answer. One: a real, non-fatal weakness. Two: what it broke. Three: what you run now so it doesn’t break again. Example: “I used to rewrite emails ten times and miss the window. I now send a draft in thirty minutes, then edit once.” Honest. Boring. Employable. That is the whole trick.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. Empty interview chair and a glass of water on a navy table, champagne light from a tall window, faceless silhouette of an interviewer opposite, Sandton office, 9:16, tense and clean.
+2. Close-up of a notebook with three handwritten lines: Weakness / What it broke / What I run now. Gold pen, cream paper, dark desk.
+3. Phone voice-memo screen (no real name) on a bedspread, earphones, late-afternoon light through curtains — practising answers, faceless.
+4. Red stamp “PERFECTIONIST” being crossed out with a gold marker on cream paper, navy background, cinematic macro.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>“I’m a perfectionist” is not humble. It’s a default ringtone.
+Real weakness. What it broke. What you run now.
+Practise it out loud once. Then go sit in the room.
+Need a full interview brief from your actual CV? Comment WEAKNESS or WhatsApp — link in bio.
+
+#InterviewTok #JobTok #CareerTok #InterviewTips #JobInterview #CareerAdvice #GraduateJobs #SoftSkills #JobSearch #InterviewPrepSA #JobSearchSA #CareerTipsSA #GetHiredSA #GraduateSA #Learnerships</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 4 -->
+      <details class="pack">
+        <summary>
+          <div class="num">04</div>
+          <div>
+            <strong>You do have experience</strong>
+            <div class="meta">Graduate CV · ~37s · FIX THIS BEFORE YOU APPLY</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>YOU DO HAVE EXPERIENCE</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>You do have experience. You keep burying it under a sad sentence. Vacation work. Group projects. Tutoring. SRC. Church admin. Helping your aunt’s spaza with stock. A learnership. That is work. Recruiters do not need ten years. They need proof you showed up and moved a number. Steal this bullet: “Tutored 12 matriculants in maths — 9 improved by at least one symbol.” Put education and projects above a thin work-history. You are not empty. Your CV is badly cast.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. Over-shoulder of a young person at a small desk in a SA student room, printed CV, textbook stack, gold desk lamp, navy evening, faceless, hopeful, 9:16.
+2. Close-up of hands packing stock in a small retail counter, warm light, authentic SA store, no logos, cinematic, respectful, not poverty-porn.
+3. Cream CV page with a highlighted “Projects & Leadership” section, gold highlighter, dark navy desk, coffee, plant.
+4. Campus steps in South Africa, late afternoon, anonymous students walking away from camera with backpacks, warm gold light, architecture softly out of focus.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>“No experience” is not a personality. Stop leading with it.
+Tutoring. SRC. Vacation work. The family shop. A real project with a number.
+If a human did it and someone was better after, it belongs on page one.
+Comment GRAD for the no-experience CV map. jobreadycv.za
+
+#GraduateTok #JobTok #CareerTok #GraduateJobs #FirstJob #CVTips #EntryLevel #CareerAdvice #JobSearch #GraduateSA #JobSearchSA #Learnerships #Matriculant #CVWritingSA #GetHiredSA</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 5 -->
+      <details class="pack">
+        <summary>
+          <div class="num">05</div>
+          <div>
+            <strong>Tell me about yourself — not Grade R</strong>
+            <div class="meta">Interview · ~40s · SA INTERVIEW, DECODED</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>NOT YOUR LIFE STORY</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>They said tell me about yourself. They did not say start in Grade R. This question is “why you, for this desk, in the next forty-five seconds.” Use Present, Past, Proof, Pivot. Present: who you are professionally. Past: one relevant stretch. Proof: one number. Pivot: why this role. Example: “I’m a junior analyst who just finished a Standard Bank learnership. I built a weekly exception report that cut manual checks by thirty percent. I want to do that for your risk team.” Sit down. You are done.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. View from behind a candidate sitting opposite a blurred interview panel in a modern SA boardroom, champagne light, navy chairs, glass water bottles, 9:16, cinematic tension.
+2. Four cream index cards on a navy desk labelled PRESENT PAST PROOF PIVOT in gold ink, hands arranging them, top-down.
+3. Close-up of a mouth and jaw only, slightly out of focus, speaking, dark background, gold side light — anonymous, not identifiable.
+4. Lift interior going up a Sandton or Cape Town office tower, anonymous person in a simple blazer holding a slim navy folder, city reflected in the doors.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>Tell me about yourself ≠ your autobiography.
+Present. Past. Proof. Pivot. Forty-five seconds. Then stop talking.
+If you cannot say it in one breath, it is not ready.
+Comment PILLAR and I’ll send the fill-in-the-blanks. jobreadycv.za
+
+#InterviewTok #JobTok #CareerTok #InterviewTips #TellMeAboutYourself #JobInterview #CareerAdvice #GraduateJobs #JobSearch #InterviewPrepSA #JobSearchSA #CareerTipsSA #GetHiredSA #GraduateSA #Learnerships</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 6 -->
+      <details class="pack">
+        <summary>
+          <div class="num">06</div>
+          <div>
+            <strong>That 1-page US resume is why</strong>
+            <div class="meta">SA Market Truth · ~36s · RECRUITER WOULD NEVER SAY THIS</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>THAT 1-PAGE RESUME IS WHY</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>That pretty one-page American resume is why Sandton is not calling you back. This is not New York. Local hiring managers expect a CV. Two to three pages when you have a story. SA spelling. A city and province. References ready. Organisation with an S. Programme with an ME. A US builder will strip all of that and call it modern. It is not modern. It is foreign. If your file looks like it was written for a visa you do not have, rewrite it for the country you are actually applying in.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. A thin one-page colourful “resume” being pushed off a desk into a bin, while a thicker cream 3-page SA CV sits centred on a navy folder. Gold light. Faceless hands. 9:16.
+2. Macro of the word “organization” on a screen being corrected to “organisation” with a gold cursor, dark UI, cinematic.
+3. Printed CV with a neat References block, Pretoria or Cape Town address style, cream paper, black pen, navy desk, photoreal.
+4. Split skyline: left generic US glass canyon (desaturated); right unmistakable Table Mountain or Sandton skyline in warm gold light. Graphic but photoreal. 9:16.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>If a US app built your CV, a SA recruiter can smell it in one glance.
+Wrong length. Wrong spelling. No references. “Resume” energy.
+We write CVs for PNet, the banks, and the public sector — not Brooklyn.
+Comment SA or WhatsApp. jobreadycv.za
+
+#JobTok #CareerTok #ResumeTips #CVTips #JobSearch #CareerAdvice #ATS #GraduateJobs #LinkedInTips #JobSearchSA #CVWritingSA #CareerTipsSA #PNet #GetHiredSA #SouthAfricaJobs</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 7 -->
+      <details class="pack">
+        <summary>
+          <div class="num">07</div>
+          <div>
+            <strong>Delete this tonight</strong>
+            <div class="meta">CV Craft · ~33s · FIX THIS BEFORE YOU APPLY</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>DELETE THIS TONIGHT</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>If your CV has your ID number, a photo, and your marital status — delete the whole header. You are handing strangers a fraud kit and a reason to bias you. Same bin: religion, kids, full street address, age, a nickname email. Keep: name, city and province, phone with WhatsApp, a boring email, LinkedIn. Photo only if they begged for it — acting, modelling, front-of-house if they said so. Everything else is noise or danger. Clean header. Then we can talk about the actual job.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. Cream CV header with a gold marker violently crossing out an ID-style number (use fake digits 0000), a small photo box, and the word “Married”. Navy desk, dramatic light, 9:16.
+2. Hands blacking out personal data on a printed form with a thick marker, only city name left visible, cinematic macro.
+3. A professional, quiet header on a CV: name, “Soweto, Gauteng”, phone, email, LinkedIn — cream paper, gold clip, dark oak.
+4. Phone lock-screen with a WhatsApp icon and a missed call from an unknown recruiter, on a navy bedside table at night, anonymous.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>Your ID number on a PDF you emailed to a stranger is not “professional”. It’s a risk.
+Photo, marital status, church, kids, full address — out.
+Name, city, WhatsApp, boring email, LinkedIn — in.
+Comment HEADER for the clean-header template. jobreadycv.za
+
+#JobTok #CareerTok #CVTips #ResumeTips #JobSearch #CareerAdvice #DataPrivacy #GraduateJobs #ATS #JobSearchSA #CVWritingSA #CareerTipsSA #PNet #GetHiredSA #GraduateSA</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 8 -->
+      <details class="pack">
+        <summary>
+          <div class="num">08</div>
+          <div>
+            <strong>One CV is why you’re ghosted</strong>
+            <div class="meta">Hunt Ops · ~35s · FIX THIS BEFORE YOU APPLY</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>ONE CV IS WHY YOU’RE GHOSTED</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>Sending one CV to eighty PNet ads is not a strategy. It’s a hope. You do not rewrite your life every time. You do a five-minute tailor. One: copy the exact job title into your header if it is true. Two: steal six words from the advert into your skills — only ones you can defend. Three: reorder three bullets so the most relevant sit first. Four: mirror one sentence of their language in your summary. Same human. Different lock. That is how callbacks start.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. Split screen: left a highlighted SA job-board advert on a laptop (invented company, no real logos); right a CV with the same words highlighted in gold. Dark navy room, 9:16.
+2. Top-down hands with scissors and gold washi tape physically rearranging printed bullet-point strips on cream paper. Craft, clean, cinematic.
+3. Phone timer at 5:00 next to a coffee and a CV, morning light in a SA kitchen, faceless.
+4. Before/after: faded generic summary vs a sharp gold-ink summary naming a specific role, same desk, same hands.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>Eighty generic applications will lose to six tailored ones. Every time.
+Title. Six true keywords. Reorder three bullets. Mirror one sentence.
+Five minutes. Then send.
+Comment TAILOR or WhatsApp a vacancy + your CV. We’ll reshape it to the brief. jobreadycv.za
+
+#JobTok #CareerTok #JobSearch #CVTips #ATS #CareerAdvice #GraduateJobs #LinkedInTips #Productivity #PNet #Careers24 #CareerJunction #JobSearchSA #CVWritingSA #GetHiredSA</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 9 -->
+      <details class="pack">
+        <summary>
+          <div class="num">09</div>
+          <div>
+            <strong>Your LinkedIn headline is invisible</strong>
+            <div class="meta">Hunt Ops · ~34s · RECRUITER WOULD NEVER SAY THIS</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>YOUR HEADLINE IS INVISIBLE</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>Your LinkedIn still says Open to Work, hardworking graduate. That is why nobody DMs you. Recruiters search nouns, not vibes. Formula: role they would type, plus proof, plus city. “Graduate Data Analyst | SQL + Power BI | Tshwane”. “Retail supervisor | 40-staff floor | Cape Town”. Then write an About of five short lines that a human would actually say. Turn the green banner off if it is doing more cringe than work. The headline is the advert. Make it searchable.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. Phone showing a generic professional-profile app (invented name), headline in sharp gold type, held by anonymous hands in a cafe, 9:16.
+2. A recruiter’s blurred laptop with a search bar containing “data analyst Tshwane”, dark office, champagne light, faceless.
+3. Cream printout of a 5-line About section, gold pen edits in the margin, navy desk.
+4. Green “open to work” frame being peeled off a printed portrait like a sticker, leaving a clean photo underneath, macro, playful.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>Recruiters do not search “hardworking”. They search the job they are paid to fill.
+Role. Proof. City.
+If your headline is a moodboard, you are unsearchable.
+Comment HEADLINE and I’ll rewrite yours in the comments. jobreadycv.za
+
+#LinkedInTips #JobTok #CareerTok #LinkedIn #PersonalBranding #JobSearch #GraduateJobs #CareerAdvice #Recruiter #LinkedInSA #JobSearchSA #CareerTipsSA #GetHiredSA #GraduateSA #CVWritingSA</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+
+      <!-- PACK 10 -->
+      <details class="pack">
+        <summary>
+          <div class="num">10</div>
+          <div>
+            <strong>That WhatsApp job is a robbery</strong>
+            <div class="meta">Trust / PSA · ~38s · SCAM OR REAL?</div>
+          </div>
+          <div class="chev">+</div>
+        </summary>
+        <div class="pack-body">
+          <div class="prompt" data-copy><pre>THAT WHATSAPP JOB IS A SCAM</pre><button class="copy" type="button">Copy hook</button></div>
+          <div class="prompt" data-copy><pre>If a recruiter on WhatsApp wants R350 before the interview — that is not a job. That is a robbery. Real employers do not charge you to be considered. Red flags: they found you first, the salary is fantasy, the company name Googles like mist, they want your ID and bank details today, they rush you off a paid link. You never pay for a job. You never send your ID to a stranger on WhatsApp. Save this, send it to the family group, and if a “HR officer” is currently circling you — screenshot it and walk.</pre><button class="copy" type="button">Copy VO</button></div>
+          <div class="prompt" data-copy><pre>1. Phone on a kitchen table showing a generic green-bubble chat demanding “R350 placement fee”. A hand hovering, not typing. Harsh noon SA light. 9:16.
+2. A red warning triangle reflected in a phone screen, dark navy room, champagne rim light, cinematic, no gore.
+3. Hands ripping a fake “appointment letter” printed on cheap paper, gold light, navy background.
+4. Family-group energy: a phone being held out over a tea tray, anonymous, warm SA home interior, sharing a warning post.</pre><button class="copy" type="button">Copy visuals</button></div>
+          <div class="prompt" data-copy><pre>You do not pay to be hired. Full stop.
+R350 “admin”. Fantasy EPWP salaries. Strangers asking for your ID on WhatsApp.
+If it feels rushed and expensive, it is not HR.
+Share this to the family group. If you want a real CV for real adverts — jobreadycv.za, link in bio.
+
+#ScamAlert #JobTok #CareerTok #JobScam #CareerAdvice #JobSearch #WhatsApp #GraduateJobs #StaySafe #JobSearchSA #CareerTipsSA #JobScamSA #EPWP #GetHiredSA #SouthAfricaJobs</pre><button class="copy" type="button">Copy caption</button></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="hooks">
+    <div class="wrap">
+      <h2>Next 15 hooks (run Prompt B)</h2>
+      <p class="sub">Do not invent a new series until these are filmed.</p>
+      <div class="grid g2">
+        <div class="card">
+          <ul class="tight">
+            <li>YOUR EMAIL IS WHY THEY DIDN’T CALL</li>
+            <li>LOAD-SHEDDING MID-INTERVIEW? DO THIS</li>
+            <li>“WHAT’S YOUR SALARY EXPECTATION?”</li>
+            <li>STOP WRITING DUTIES. WRITE DAMAGES.</li>
+            <li>YOUR COVER LETTER SOUNDS LIKE CHATGPT</li>
+            <li>THEY ASKED FOR AN EE FORM. RELAX.</li>
+            <li>REFERENCES: STOP LISTING YOUR PASTOR</li>
+            <li>A GAP ON YOUR CV IS NOT A CRIME</li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul class="tight">
+            <li>VIRTUAL INTERVIEW, TOWNSHIP WIFI — SURVIVE IT</li>
+            <li>WHY GOVERNMENT APPLICATIONS DIE IN A PORTAL</li>
+            <li>THE LEARNERSHIP CV IS A DIFFERENT ANIMAL</li>
+            <li>YOU GOT THE OFFER. NOW NEGOTIATE IN RANDS.</li>
+            <li>FOLLOW UP WITHOUT SOUNDING THIRSTY</li>
+            <li>YOUR MATRIC SYMBOLS STILL MATTER. HERE’S WHEN.</li>
+            <li>IF THEY GHOST AFTER THE PANEL, DO THIS</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="captions">
+    <div class="wrap">
+      <h2>Caption formulas &amp; hashtag banks</h2>
+      <div class="grid g3">
+        <article class="card"><h3>Punch</h3><p class="muted">Hook as line 1 → one-sentence tactic → CTA + keyword → jobreadycv.za</p></article>
+        <article class="card"><h3>Story</h3><p class="muted">Hook → two lines of “this is you” → the fix in three shorts → CTA</p></article>
+        <article class="card"><h3>Save-bait</h3><p class="muted">“Save this before your next PNet / panel / learnership application.” + 3 steps</p></article>
+      </div>
+      <div style="margin-top:16px">
+        <div class="label">Always-on hashtag core</div>
+        <div class="prompt" data-copy><pre>#JobTok #CareerTok #JobSearchSA</pre><button class="copy" type="button">Copy</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar">
+    <div class="wrap">
+      <h2>30-day calendar</h2>
+      <p class="sub">Film Sunday. Post 07:00–08:00 or 18:30–21:00 SAST. If a video hits, remake it in 24 hours.</p>
+      <div class="card" style="overflow:auto">
+        <table>
+          <thead><tr><th>Day</th><th>Film</th><th>Sticker</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>V01 6-second scan</td><td>FIX THIS BEFORE YOU APPLY</td></tr>
+            <tr><td>2</td><td>V03 Weakness</td><td>SA INTERVIEW, DECODED</td></tr>
+            <tr><td>3</td><td>V07 Delete this tonight</td><td>FIX THIS BEFORE YOU APPLY</td></tr>
+            <tr><td>4</td><td>V10 WhatsApp scam</td><td>SCAM OR REAL?</td></tr>
+            <tr><td>5</td><td>V02 ATS robot</td><td>YOUR CV IS NOT SHY</td></tr>
+            <tr><td>8</td><td>V04 No experience</td><td>FIX THIS BEFORE YOU APPLY</td></tr>
+            <tr><td>9</td><td>V05 Tell me about yourself</td><td>SA INTERVIEW, DECODED</td></tr>
+            <tr><td>11</td><td>V08 Tailor in 5</td><td>FIX THIS BEFORE YOU APPLY</td></tr>
+            <tr><td>12</td><td>V09 LinkedIn headline</td><td>RECRUITER WOULD NEVER SAY THIS</td></tr>
+            <tr><td>15</td><td>V06 US vs SA CV</td><td>RECRUITER WOULD NEVER SAY THIS</td></tr>
+            <tr><td>19</td><td>Before/after bullets (anonymised)</td><td>Soft sell</td></tr>
+            <tr><td>27</td><td>Starter free / Pro R99 — still one tactic first</td><td>Soft sell</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="produce">
+    <div class="wrap">
+      <h2>CapCut specs</h2>
+      <div class="grid g2">
+        <article class="card">
+          <ul class="tight">
+            <li>1080×1920 · 30fps · 28–40 seconds</li>
+            <li>First frame: cream hook on navy, readable muted</li>
+            <li>Cut every 1–1.5s · Ken Burns 105% on stills</li>
+            <li>VO slightly faster than default · pause 0.2s after hook</li>
+            <li>Music −22 to −28dB under VO</li>
+            <li>End card 1.4s: jobreadycv.za · WhatsApp us · link in bio</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Free stack</h3>
+          <p class="muted">ChatGPT / Gemini for scripts · Canva covers · Pexels / Unsplash B-roll · CapCut edit + TTS + captions · Later / Publer to schedule. Advanced: ReelsMakerAI or Video Autopilot if you want hands-off later.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="convert">
+    <div class="wrap">
+      <h2>Profile &amp; WhatsApp kit</h2>
+      <div class="grid g2">
+        <div>
+          <div class="label">Bio</div>
+          <div class="prompt" data-copy><pre>SA CVs that get callbacks.
+ATS · interviews · LinkedIn
+WhatsApp us — no forms.</pre><button class="copy" type="button">Copy</button></div>
+        </div>
+        <div>
+          <div class="label">WhatsApp opener</div>
+          <div class="prompt" data-copy><pre>Welcome. I’m on the jobreadycv.za desk.
+
+Quick so I don’t waste your data:
+• role + city
+• graduate / learnership / 1–5 years / pivot
+• have a current CV? (yes / messy / no)
+
+Starter is free for one CV. Pro is R99/mo if you’re in an active hunt.
+Send whatever you have — even a photo of a printed one.</pre><button class="copy" type="button">Copy</button></div>
+        </div>
+        <div>
+          <div class="label">DM after a keyword comment</div>
+          <div class="prompt" data-copy><pre>Got you. Send:
+1. the role you’re aiming at
+2. your city
+3. your current CV (even if it’s messy)
+
+I’ll tell you the first fix before we talk plans.</pre><button class="copy" type="button">Copy</button></div>
+        </div>
+        <div>
+          <div class="label">WhatsApp link (bio)</div>
+          <div class="prompt" data-copy><pre>https://wa.me/27682510828?text=Hi%20jobready.za%20%E2%80%94%20I%20want%20a%20CV%20that%20gets%20interviews.</pre><button class="copy" type="button">Copy</button></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>Do not post if you fail this</h3>
+        <ul class="tight muted">
+          <li>Would a tired person in a taxi get the tactic with the sound off?</li>
+          <li>Is there one SA-specific noun (PNet, rands, learnership, Sandton, WhatsApp)?</li>
+          <li>Is the CTA one action?</li>
+          <li>Did we promise a job? If yes, rewrite.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <strong style="color:var(--gold-2); font-family:Fraunces,serif; font-size:22px;">jobreadycv.za</strong>
+      <p>Get job-ready. Get hired. Full source also lives in <a href="FACELESS_CONTENT_PLAYBOOK.md">FACELESS_CONTENT_PLAYBOOK.md</a>.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll("[data-copy]").forEach((box) => {
+      const btn = box.querySelector(".copy");
+      const pre = box.querySelector("pre");
+      if (!btn || !pre) return;
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(pre.innerText);
+          btn.textContent = "Copied";
+          btn.classList.add("done");
+          setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("done"); }, 1400);
+        } catch {
+          const r = document.createRange();
+          r.selectNodeContents(pre);
+          const sel = getSelection();
+          sel.removeAllRanges();
+          sel.addRange(r);
+          btn.textContent = "Select + copy";
+        }
+      });
+    });
+  </script>
+</body>
 </html>
