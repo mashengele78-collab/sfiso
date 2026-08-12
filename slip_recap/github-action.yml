@@ -1,0 +1,45 @@
+name: Betway slip recap email
+
+# Schedule only fires from the repository default branch.
+# Until this workflow is on main, use "Run workflow" or merge the PR.
+
+on:
+  schedule:
+    # 08:00 SAST = 06:00 UTC, 15–20 August (day after each slate day, plus final)
+    - cron: "0 6 15-20 8 *"
+    # Extra pass after the Wednesday night Atlético kick-off (Thu 06:00 SAST = 04:00 UTC)
+    - cron: "0 4 20 8 *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "preview = setup mail now; auto = settle whatever has finished"
+        required: true
+        default: preview
+        type: choice
+        options:
+          - preview
+          - auto
+
+permissions:
+  contents: read
+
+jobs:
+  recap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Settle slip and email mashcop23@gmail.com
+        env:
+          RECAP_MODE: ${{ github.event.inputs.mode || 'auto' }}
+          RECAP_TO: mashcop23@gmail.com
+        run: python3 slip_recap/send_recap.py
+
+      - name: Upload recap artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: slip-recap
+          path: slip_recap/out/
+          if-no-files-found: ignore
