@@ -1,0 +1,25 @@
+{
+  "name": "jobready-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion video: 'This is not a CV' — jobready.za",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "bash render.sh",
+    "prepare-chromium": "node scripts/prepare-chromium.mjs",
+    "still": "remotion still JobReadyVideo out/poster.png --frame=30 --chrome-mode=chrome-for-testing"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.509",
+    "@sparticuz/chromium": "149.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.509",
+    "styled-components": "6.5.2"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.6.3"
+  }
+}

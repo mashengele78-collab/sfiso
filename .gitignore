@@ -2,3 +2,9 @@ slip_recap/out/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Remotion app
+node_modules/
+jobready/out/
+jobready/build/
+jobready/.cache/
