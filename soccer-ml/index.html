@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soccer Betway ML — Daily Picks</title>
+<style>
+:root{--bg:#07110d;--panel:#0e1d16;--line:#203c2e;--text:#edf8f1;--muted:#9bb7a6;--green:#56e18e;--gold:#f6c85f;--red:#ff7b7b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#123923 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 system-ui,sans-serif}.wrap{max-width:1120px;margin:auto;padding:36px 20px 64px}header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:28px}.brand{display:flex;gap:14px;align-items:center}.ball{width:47px;height:47px;border:2px solid var(--green);border-radius:50%;display:grid;place-items:center;font-size:24px}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}h1{font-size:clamp(28px,5vw,48px);line-height:1.05;margin:4px 0 8px}.muted{color:var(--muted)}.status{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:99px;white-space:nowrap}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);margin-right:7px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.card,.empty,.notice{background:linear-gradient(145deg,#102219,#0b1711);border:1px solid var(--line);border-radius:16px;padding:20px}.value{font-size:30px;font-weight:800;margin-top:4px}.notice{border-color:#5b4a20;color:#f8e6b8;margin-bottom:18px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px}table{width:100%;border-collapse:collapse;background:rgba(11,23,17,.85)}th,td{text-align:left;padding:15px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}.prob,.positive{color:var(--green);font-weight:750}.pill{border:1px solid var(--line);border-radius:99px;padding:4px 9px}.empty{text-align:center;padding:55px 24px}.empty b{display:block;font-size:24px;margin-bottom:8px}footer{margin-top:30px;color:var(--muted);font-size:13px}a{color:var(--green)}@media(max-width:700px){header{display:block}.status{display:inline-block;margin-top:16px}.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+<header><div><div class="brand"><div class="ball">⚽</div><div><div class="eyebrow">Automated value scanner</div><h1>Soccer Betway ML</h1></div></div><div class="muted">Only selections passing probability, edge, coverage and freshness gates.</div></div><div class="status"><span class="dot"></span>Daily automation active</div></header>
+<div class="notice"><strong>Model estimates are not guarantees.</strong> Verify the live price before betting. No bet is a valid result.</div>
+<section class="cards"><div class="card"><div class="muted">Qualifying bets</div><div class="value" id="count">—</div></div><div class="card"><div class="muted">Quotes scanned</div><div class="value" id="quotes">—</div></div><div class="card"><div class="muted">Last updated</div><div class="value" id="updated" style="font-size:18px">—</div></div></section>
+<section id="content"><div class="empty"><b>Loading report…</b><span class="muted">Reading the latest automated scan.</span></div></section>
+<footer>Informational use only. Bet only where legal and only what you can afford to lose. Probability threshold: 80%; minimum edge and risk controls apply.</footer>
+</main>
+<script>
+const pct=n=>(n*100).toFixed(1)+'%';
+fetch('./latest.json?ts='+Date.now()).then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(d=>{
+ document.querySelector('#count').textContent=d.candidate_count;document.querySelector('#quotes').textContent=d.quote_count;document.querySelector('#updated').textContent=d.generated_at?new Date(d.generated_at).toLocaleString():'Not run';
+ const c=d.candidates||[], root=document.querySelector('#content');
+ if(!c.length){root.innerHTML='<div class="empty"><b>No qualifying bets today</b><span class="muted">Nothing passed every configured gate. Discipline beats forced action.</span></div>';return}
+ root.innerHTML='<div class="table-wrap"><table><thead><tr><th>League / fixture</th><th>Market</th><th>Selection</th><th>Odds</th><th>Probability</th><th>Edge</th><th>EV</th><th>Stake</th></tr></thead><tbody>'+c.map(x=>`<tr><td><strong>${x.league}</strong><br><span class="muted">${x.fixture}</span></td><td><span class="pill">${x.market}</span></td><td>${x.selection}${x.point==null?'':' '+x.point}</td><td>${x.betway_odds.toFixed(2)}</td><td class="prob">${pct(x.estimated_probability)}</td><td class="positive">${pct(x.edge)}</td><td class="positive">${pct(x.expected_value)}</td><td>${x.stake==null?'—':x.stake.toFixed(2)}</td></tr>`).join('')+'</tbody></table></div>';
+}).catch(()=>document.querySelector('#content').innerHTML='<div class="empty"><b>Report not available yet</b><span class="muted">Run the Daily soccer predictions workflow once.</span></div>');
+</script></body></html>

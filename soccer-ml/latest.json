@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-08-16T14:00:40.243476+02:00",
+  "quote_count": 12,
+  "candidate_count": 1,
+  "candidates": [
+    {
+      "event_id": "demo-001",
+      "league": "Demo League",
+      "commence_time": "2026-08-17T12:00:40.241465Z",
+      "fixture": "Cape Town City vs Example United",
+      "market": "h2h",
+      "selection": "Cape Town City",
+      "point": null,
+      "betway_odds": 1.25,
+      "estimated_probability": 0.8602316099928686,
+      "lower_probability": 0.6383138020964922,
+      "implied_probability": 0.8,
+      "edge": 0.060231609992868584,
+      "expected_value": 0.07528951249108573,
+      "consensus_books": 4,
+      "model_source": "no-vig-consensus-baseline",
+      "bankroll_fraction": 0.02,
+      "stake": 20.0,
+      "link": null,
+      "notes": [
+        "Passes configured probability and value gates"
+      ]
+    }
+  ]
+}
