@@ -46,6 +46,25 @@ Located in [`slip_recap/`](slip_recap/).
 
 This existing component settles configured Betway slips from match results and sends a profit/loss recap. It operates independently from the prediction engine.
 
+### Facebook CLI
+
+Located in [`fb_cli/`](fb_cli/).
+
+`fbcli` is a command-line client for the Facebook Graph API (v26.0). It authenticates, manages Pages, publishes and schedules posts, moderates comments, and reads insights. It also knows how to publish the scanner's daily report:
+
+```bash
+cd fb_cli
+pip install -e '.[dev]'
+
+fbcli auth login --token "$FB_ACCESS_TOKEN"
+fbcli pages list          # caches per-Page tokens, sets a default Page
+fbcli slip publish --stakes --dry-run
+```
+
+Every mutating command supports `--dry-run` to preview the exact payload and prompts for confirmation unless `--yes` is passed. Slip posts always append the responsible-gambling disclaimer, and the CLI never invents selections — when nothing qualifies it either skips or posts an explicit "no qualifying bets" note.
+
+See [`fb_cli/README.md`](fb_cli/README.md) for the full command reference.
+
 ## Live links
 
 - [Prediction dashboard](https://mashengele78-collab.github.io/sfiso/soccer-ml/)
@@ -249,10 +268,25 @@ Pull requests that change the predictor automatically trigger the Soccer ML test
 ```text
 .github/workflows/
 ├── soccer-ml-daily.yml
-└── soccer-ml-tests.yml
+├── soccer-ml-tests.yml
+└── fb-cli-tests.yml
 
 soccer_ml/
 ├── config/
 │   └── settings.yml
 ├── models/
 ├── reports/
+├── src/soccer_betway/
+└── tests/
+
+slip_recap/
+└── send_recap.py
+
+fb_cli/
+├── src/fbcli/
+│   ├── cli.py
+│   ├── config.py
+│   ├── graph.py
+│   └── commands/
+└── tests/
+```
