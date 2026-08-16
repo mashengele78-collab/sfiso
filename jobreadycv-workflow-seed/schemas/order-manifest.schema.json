@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jobreadycv.example/schemas/order-manifest.schema.json",
+  "title": "JobReadyCV local order manifest",
+  "description": "A minimal order-control record. Real instances belong in secure order storage outside Git.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "order_id",
+    "created_on",
+    "jurisdiction",
+    "services",
+    "status",
+    "consent_recorded",
+    "source_facts_checked",
+    "human_review_approved",
+    "output_formats"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "order_id": {
+      "type": "string",
+      "pattern": "^JRCV-[0-9]{8}-[A-Z0-9]{6}$",
+      "description": "Random identifier only. Never encode a name, phone number, email address, or student number."
+    },
+    "created_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code relevant to the order."
+    },
+    "services": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "cv-review",
+          "cv-rewrite",
+          "cover-letter",
+          "linkedin-review",
+          "application-bundle"
+        ]
+      }
+    },
+    "status": {
+      "enum": [
+        "intake",
+        "awaiting-clarification",
+        "drafting",
+        "customer-review",
+        "qa",
+        "ready-for-delivery",
+        "delivered",
+        "cancelled"
+      ]
+    },
+    "consent_recorded": {
+      "type": "boolean"
+    },
+    "source_facts_checked": {
+      "type": "boolean"
+    },
+    "human_review_approved": {
+      "type": "boolean"
+    },
+    "output_formats": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": ["docx", "pdf"]
+      }
+    }
+  }
+}

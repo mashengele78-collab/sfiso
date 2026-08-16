@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "order_id": "JRCV-20990101-ABC123",
+  "created_on": "2099-01-01",
+  "jurisdiction": "ZA",
+  "services": [
+    "cv-review"
+  ],
+  "status": "qa",
+  "consent_recorded": true,
+  "source_facts_checked": true,
+  "human_review_approved": false,
+  "output_formats": [
+    "docx",
+    "pdf"
+  ]
+}

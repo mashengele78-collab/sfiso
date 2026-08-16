@@ -1,0 +1,51 @@
+# Customer/order data: never version
+clients/
+client-data/
+orders/
+working/
+exports/
+deliveries/
+uploads/
+whatsapp/
+
+# Customer document and archive formats
+*.pdf
+*.doc
+*.docx
+*.odt
+*.rtf
+*.pages
+*.zip
+*.7z
+*.rar
+
+# Images/scans commonly containing personal data
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.tif
+*.tiff
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.credentials*
+secrets/
+
+# Local/tooling output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+coverage/
+dist/
+build/
+.DS_Store
+Thumbs.db
