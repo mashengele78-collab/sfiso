@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JobReadyCV — Synthetic workflow play</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08111f;
+      --panel: #101c2d;
+      --panel-2: #15243a;
+      --line: #283a53;
+      --text: #edf3fa;
+      --muted: #9fb0c3;
+      --gold: #d7b66d;
+      --green: #53d39b;
+      --red: #ff7b7b;
+      --blue: #75a9ff;
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(46, 91, 145, .28), transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      font: 15px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button { font: inherit; }
+    .shell { width: min(1180px, calc(100% - 28px)); margin: 0 auto; padding: 30px 0 70px; }
+    .eyebrow { margin: 0 0 8px; color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 0; max-width: 760px; font-size: clamp(32px, 6vw, 58px); line-height: 1.02; letter-spacing: -.045em; }
+    .lede { max-width: 780px; margin: 18px 0 0; color: var(--muted); font-size: 17px; }
+    .notice { display: flex; gap: 10px; align-items: flex-start; margin: 22px 0; padding: 14px 16px; border: 1px solid #765c2c; border-radius: 14px; background: #2a2112; color: #f6d899; }
+    .notice strong { color: #fff0bf; }
+    .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; margin-top: 26px; }
+    .run {
+      border: 0; border-radius: 12px; padding: 12px 18px; cursor: pointer; font-weight: 800;
+      background: var(--gold); color: #15100a; box-shadow: 0 10px 30px rgba(215,182,109,.16);
+    }
+    .run:hover { filter: brightness(1.08); }
+    .run:disabled { opacity: .65; cursor: progress; }
+    .order { color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+    .progress-wrap { margin: 20px 0 12px; height: 5px; overflow: hidden; border-radius: 999px; background: var(--line); }
+    .progress { width: 16.66%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--gold), var(--green)); transition: width .35s ease; }
+    .steps { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 8px; margin-bottom: 22px; }
+    .step {
+      min-height: 67px; padding: 9px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer;
+      background: rgba(16,28,45,.72); color: var(--muted); text-align: left;
+    }
+    .step span { display: block; color: inherit; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .step b { display: block; margin-top: 3px; color: var(--text); font-size: 13px; }
+    .step.active { border-color: var(--gold); background: #2a2418; color: var(--gold); }
+    .step.complete { border-color: #265e4b; color: var(--green); }
+    .layout { display: grid; grid-template-columns: minmax(0,1.65fr) minmax(270px,.75fr); gap: 18px; }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); background: rgba(16,28,45,.94); box-shadow: 0 24px 65px rgba(0,0,0,.18); }
+    .stage { min-height: 640px; padding: clamp(18px, 4vw, 32px); }
+    .stage-panel { display: none; animation: enter .25s ease; }
+    .stage-panel.active { display: block; }
+    @keyframes enter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+    h2 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.025em; }
+    h3 { margin: 25px 0 10px; font-size: 16px; }
+    p { margin: 8px 0; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin: 18px 0; }
+    .metric, .box { padding: 14px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel-2); }
+    .metric small { display: block; color: var(--muted); }
+    .metric strong { display: block; margin-top: 5px; font-size: 18px; }
+    ul { padding-left: 20px; }
+    li + li { margin-top: 6px; }
+    .pill { display: inline-flex; align-items: center; gap: 6px; margin: 4px 5px 4px 0; padding: 5px 9px; border-radius: 999px; background: #1a2a40; color: #cbd8e7; font-size: 12px; }
+    .pill.match { background: #16372c; color: #a8ebce; }
+    .pill.block { background: #452424; color: #ffc0c0; }
+    .decision { display: grid; grid-template-columns: 23px 1fr; gap: 10px; margin: 10px 0; padding: 12px; border-left: 3px solid var(--green); background: #102a23; border-radius: 7px 12px 12px 7px; }
+    .decision.blocked { border-color: var(--red); background: #321c21; }
+    .decision .icon { font-weight: 900; color: var(--green); }
+    .decision.blocked .icon { color: var(--red); }
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .before-after .box:first-child { border-color: #693c43; }
+    .before-after .box:last-child { border-color: #326c57; }
+    .label { color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .strike { color: #ffaaaa; text-decoration: line-through; }
+    .cv { padding: 22px; border-radius: 10px; background: #f8fafc; color: #172033; font-family: Arial, sans-serif; box-shadow: 0 12px 35px rgba(0,0,0,.28); }
+    .cv h3 { margin: 0; color: #0d315e; font-size: 22px; }
+    .cv h4 { margin: 18px 0 5px; padding-bottom: 4px; border-bottom: 2px solid #173f6d; color: #173f6d; font-size: 13px; letter-spacing: .07em; }
+    .cv p, .cv li { font-size: 12px; line-height: 1.45; }
+    .cv ul { margin-top: 6px; }
+    .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+    .check { padding: 10px 12px; border: 1px solid #286149; border-radius: 10px; background: #123326; color: #b7f0d4; font-size: 13px; }
+    .sidebar { padding: 18px; align-self: start; position: sticky; top: 14px; }
+    .sidebar h3 { margin-top: 0; }
+    .log { list-style: none; padding: 0; margin: 12px 0 0; }
+    .log li { display: grid; grid-template-columns: 12px 1fr; gap: 9px; padding: 10px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .log li::before { content: ""; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: #4b6078; }
+    .log li.done { color: var(--text); }
+    .log li.done::before { background: var(--green); box-shadow: 0 0 0 4px rgba(83,211,155,.1); }
+    .status { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .status strong { color: var(--green); }
+    .nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 25px; }
+    .nav button { padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; background: var(--panel-2); color: var(--text); }
+    .nav button:disabled { opacity: .35; cursor: default; }
+    .fine { margin-top: 22px; color: #718398; font-size: 12px; }
+    @media (max-width: 850px) {
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+    @media (max-width: 580px) {
+      .shell { width: min(100% - 18px, 1180px); padding-top: 20px; }
+      .grid, .before-after, .checklist { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .stage { min-height: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <p class="eyebrow">JobReadyCV operating demo</p>
+    <h1>One fictional order, from WhatsApp intake to delivery gate.</h1>
+    <p class="lede">This play shows what the private workflow repository controls. It demonstrates fact checking, truthful tailoring, human QA and safe delivery—not automatic CV generation.</p>
+
+    <div class="notice"><span>ⓘ</span><div><strong>100% synthetic.</strong> The candidate, employers, institutions, contact details and vacancy are deliberately fictional. No customer information is used.</div></div>
+
+    <div class="topbar">
+      <button class="run" id="runPlay" type="button">▶ Run the full workflow</button>
+      <span class="order">JRCV-20990101-ABC123 · Junior Office Administrator · ZA</span>
+    </div>
+    <div class="progress-wrap" aria-hidden="true"><div class="progress" id="progress"></div></div>
+    <nav class="steps" aria-label="Workflow stages" id="steps"></nav>
+
+    <div class="layout">
+      <section class="card stage" aria-live="polite">
+        <article class="stage-panel active" data-stage="0">
+          <p class="eyebrow">Stage 1 of 6</p>
+          <h2>Intake and authority gate</h2>
+          <p class="muted">The operator records the service request in secure order storage outside Git. Paid processing remains blocked until the required legal authority and privacy process are approved.</p>
+          <div class="grid">
+            <div class="metric"><small>Requested service</small><strong>CV review and rewrite</strong></div>
+            <div class="metric"><small>Target opportunity</small><strong>Junior Office Administrator</strong></div>
+            <div class="metric"><small>Output requested</small><strong>DOCX + PDF</strong></div>
+            <div class="metric"><small>Deadline</small><strong>48 hours</strong></div>
+          </div>
+          <h3>Synthetic source supplied</h3>
+          <ul>
+            <li>Matric completed in 2023 at “Example Secondary School”.</li>
+            <li>Volunteer administration support, May–December 2025.</li>
+            <li>Retail till assistant, November 2024–April 2025.</li>
+            <li>Word, basic Excel, Google Drive, English and isiXhosa.</li>
+          </ul>
+          <div class="decision"><span class="icon">✓</span><div><strong>Consent field recorded.</strong><br><span class="muted">The workflow may proceed with this synthetic demonstration.</span></div></div>
+        </article>
+
+        <article class="stage-panel" data-stage="1">
+          <p class="eyebrow">Stage 2 of 6</p>
+          <h2>Source-fact clarification</h2>
+          <p class="muted">The old draft contains inflated and unsupported claims. The workflow does not “improve” them—it sends them back for confirmation.</p>
+          <div class="decision blocked"><span class="icon">×</span><div><strong>“Managed the community-centre office.”</strong><br>Customer clarification: maintained files and the appointment book; did not manage the office. Claim removed.</div></div>
+          <div class="decision blocked"><span class="icon">×</span><div><strong>“Advanced Excel.”</strong><br>Only basic spreadsheets were confirmed. Skill corrected to “basic Excel”.</div></div>
+          <div class="decision blocked"><span class="icon">×</span><div><strong>“Increased registrations by 30%.”</strong><br>No baseline or evidence exists. Metric rejected.</div></div>
+          <div class="decision"><span class="icon">✓</span><div><strong>“Captured and checked 200 registration forms.”</strong><br>The number was confirmed from the centre's source count. It may be used.</div></div>
+          <h3>Truth gate result</h3>
+          <p><span class="pill match">3 corrections resolved</span><span class="pill block">2 inflated claims blocked</span><span class="pill match">1 metric confirmed</span></p>
+        </article>
+
+        <article class="stage-panel" data-stage="2">
+          <p class="eyebrow">Stage 3 of 6</p>
+          <h2>Truthful vacancy matching</h2>
+          <p class="muted">Vacancy language is matched only where the candidate has supporting facts.</p>
+          <h3>Requirements matched</h3>
+          <p>
+            <span class="pill match">Matric</span>
+            <span class="pill match">Data capture</span>
+            <span class="pill match">Filing</span>
+            <span class="pill match">Telephone queries</span>
+            <span class="pill match">Word</span>
+            <span class="pill match">Basic Excel</span>
+            <span class="pill match">Customer service</span>
+          </p>
+          <h3>Requirements not claimed</h3>
+          <p><span class="pill block">Afrikaans advantageous</span><span class="pill block">Advanced Excel</span><span class="pill block">Office manager experience</span></p>
+          <div class="before-after">
+            <div class="box">
+              <span class="label">Rejected old wording</span>
+              <p class="strike">Experienced office manager with advanced Excel who increased registrations by 30%.</p>
+            </div>
+            <div class="box">
+              <span class="label">Approved wording</span>
+              <p>Entry-level office administration candidate with volunteer records support and retail customer-service experience. Used Word and basic Excel while capturing registration data and maintaining appointment records.</p>
+            </div>
+          </div>
+          <p class="fine">No ATS score is manufactured. Matching is a factual editorial check, not a guarantee of ranking, interview or employment.</p>
+        </article>
+
+        <article class="stage-panel" data-stage="3">
+          <p class="eyebrow">Stage 4 of 6</p>
+          <h2>Draft produced for human review</h2>
+          <div class="cv" aria-label="Fictional CV draft preview">
+            <h3>FICTIONAL CANDIDATE</h3>
+            <p>Cape Town, Western Cape · candidate@example.invalid · +27 00 000 0000</p>
+            <h4>PROFESSIONAL SUMMARY</h4>
+            <p>Entry-level office administration candidate with volunteer records support and retail customer-service experience. Experienced in capturing registration data, maintaining appointment records and assisting visitors, with working knowledge of Microsoft Word, basic Excel and Google Drive.</p>
+            <h4>EXPERIENCE</h4>
+            <p><strong>Volunteer Administration Assistant</strong> · Example Community Centre · May–Dec 2025</p>
+            <ul>
+              <li>Captured and checked 200 registration forms against required fields before filing.</li>
+              <li>Updated the appointment book and maintained paper and digital records.</li>
+              <li>Answered visitor and telephone queries and referred requests to the correct staff member.</li>
+            </ul>
+            <p><strong>Till Assistant</strong> · Sample Retail Store · Nov 2024–Apr 2025</p>
+            <ul>
+              <li>Processed customer purchases and followed end-of-shift cash procedures.</li>
+              <li>Responded to routine customer questions and escalated returns to a supervisor.</li>
+            </ul>
+            <h4>EDUCATION</h4>
+            <p><strong>National Senior Certificate</strong> · Example Secondary School · 2023</p>
+            <h4>SKILLS</h4>
+            <p>Data capture · Filing · Appointment records · Microsoft Word · Basic Excel · Google Drive · Customer service · English · isiXhosa</p>
+          </div>
+        </article>
+
+        <article class="stage-panel" data-stage="4">
+          <p class="eyebrow">Stage 5 of 6</p>
+          <h2>Human QA and export gate</h2>
+          <p class="muted">A human compares the draft with the source and vacancy. The optional Human Review tool may collect visual edits and comments, but it cannot approve its own output.</p>
+          <div class="checklist">
+            <div class="check">✓ Facts match confirmed source</div>
+            <div class="check">✓ No invented qualification</div>
+            <div class="check">✓ Unsupported metrics removed</div>
+            <div class="check">✓ Standard section headings</div>
+            <div class="check">✓ One-column reading order</div>
+            <div class="check">✓ Relevant terms used truthfully</div>
+            <div class="check">✓ Contact placeholders checked</div>
+            <div class="check">✓ Human delivery approval recorded</div>
+          </div>
+          <h3>Export checks represented in the real workflow</h3>
+          <ul>
+            <li>Open DOCX and PDF independently.</li>
+            <li>Check clipping, page breaks, blank pages and missing glyphs.</li>
+            <li>Copy PDF text to verify a usable text layer and reading order.</li>
+            <li>Check filenames, links and metadata for cross-customer leakage.</li>
+          </ul>
+          <div class="notice"><span>!</span><div><strong>This demo does not render DOCX or PDF.</strong> Those checks remain manual until a separately audited renderer is justified.</div></div>
+        </article>
+
+        <article class="stage-panel" data-stage="5">
+          <p class="eyebrow">Stage 6 of 6</p>
+          <h2>Delivery gate passed</h2>
+          <p class="muted">The fictional order is ready for a human operator to deliver. No message is sent automatically.</p>
+          <div class="grid">
+            <div class="metric"><small>Truth gate</small><strong style="color:var(--green)">Passed</strong></div>
+            <div class="metric"><small>Human QA</small><strong style="color:var(--green)">Approved</strong></div>
+            <div class="metric"><small>Unsupported claims</small><strong>2 blocked</strong></div>
+            <div class="metric"><small>Automated actions</small><strong>None</strong></div>
+          </div>
+          <h3>Final control</h3>
+          <div class="decision"><span class="icon">✓</span><div><strong>Correct recipient and files must be checked by a person.</strong><br>Only approved files leave secure order storage. The CV, chat, order record and delivery link never enter Git.</div></div>
+          <div class="box" style="margin-top:16px">
+            <span class="label">Outcome</span>
+            <p><strong>A truthful, targeted draft is approved for delivery.</strong></p>
+            <p class="muted">No ATS score, shortlist promise, interview promise or job guarantee was created.</p>
+          </div>
+        </article>
+
+        <div class="nav">
+          <button id="previous" type="button">← Previous</button>
+          <button id="next" type="button">Next stage →</button>
+        </div>
+      </section>
+
+      <aside class="card sidebar">
+        <p class="eyebrow">Control log</p>
+        <h3>What the workflow did</h3>
+        <ol class="log" id="log"></ol>
+        <div class="status"><span>Current state</span><strong id="status">Intake</strong></div>
+        <p class="fine">This browser play is static and dependency-free. It sends no data, makes no network calls and stores nothing.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const stages = [
+      { short: "Intake", title: "Intake", log: "Recorded a synthetic request outside Git" },
+      { short: "Truth gate", title: "Clarification", log: "Blocked unsupported and inflated claims" },
+      { short: "Match", title: "Vacancy matching", log: "Matched only evidence-backed requirements" },
+      { short: "Draft", title: "Draft", log: "Produced a one-column factual CV draft" },
+      { short: "QA", title: "Human QA", log: "Applied factual, ATS and export checks" },
+      { short: "Delivery", title: "Ready for delivery", log: "Required human approval before delivery" }
+    ];
+    let current = 0;
+    let running = false;
+    const stepRoot = document.getElementById("steps");
+    const logRoot = document.getElementById("log");
+    const panels = [...document.querySelectorAll(".stage-panel")];
+    const progress = document.getElementById("progress");
+    const status = document.getElementById("status");
+    const previous = document.getElementById("previous");
+    const next = document.getElementById("next");
+    const run = document.getElementById("runPlay");
+
+    stages.forEach((stage, index) => {
+      const button = document.createElement("button");
+      button.className = "step";
+      button.type = "button";
+      button.innerHTML = `<span>0${index + 1}</span><b>${stage.short}</b>`;
+      button.addEventListener("click", () => { if (!running) show(index); });
+      stepRoot.appendChild(button);
+      const item = document.createElement("li");
+      item.textContent = stage.log;
+      logRoot.appendChild(item);
+    });
+
+    function show(index) {
+      current = Math.max(0, Math.min(stages.length - 1, index));
+      panels.forEach((panel, i) => panel.classList.toggle("active", i === current));
+      [...stepRoot.children].forEach((step, i) => {
+        step.classList.toggle("active", i === current);
+        step.classList.toggle("complete", i < current);
+        step.setAttribute("aria-current", i === current ? "step" : "false");
+      });
+      [...logRoot.children].forEach((item, i) => item.classList.toggle("done", i <= current));
+      progress.style.width = `${((current + 1) / stages.length) * 100}%`;
+      status.textContent = stages[current].title;
+      previous.disabled = current === 0 || running;
+      next.disabled = current === stages.length - 1 || running;
+      next.textContent = current === stages.length - 1 ? "Workflow complete ✓" : "Next stage →";
+    }
+
+    previous.addEventListener("click", () => show(current - 1));
+    next.addEventListener("click", () => show(current + 1));
+    run.addEventListener("click", async () => {
+      running = true;
+      run.disabled = true;
+      run.textContent = "Running workflow…";
+      for (let index = 0; index < stages.length; index += 1) {
+        show(index);
+        await new Promise(resolve => setTimeout(resolve, index === 0 ? 700 : 1150));
+      }
+      running = false;
+      run.disabled = false;
+      run.textContent = "↻ Run again";
+      show(stages.length - 1);
+    });
+    show(0);
+  </script>
+</body>
+</html>

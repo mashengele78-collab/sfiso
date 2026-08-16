@@ -18,12 +18,13 @@ The ignore rules are a backup control, not permission to put personal data in th
 
 ## Start here
 
-1. Read [`DATA_HANDLING.md`](DATA_HANDLING.md) and [`SECURITY.md`](SECURITY.md).
-2. Follow [`docs/review-workflow.md`](docs/review-workflow.md).
-3. Copy [`templates/intake-questionnaire.md`](templates/intake-questionnaire.md) into a secure local order folder **outside this repository**. Do not fill it in here.
-4. Use [`templates/cv-qa-checklist.md`](templates/cv-qa-checklist.md) before delivery.
-5. If a machine-readable order record is needed, create it in secure order storage outside Git using [`schemas/order-manifest.schema.json`](schemas/order-manifest.schema.json). The included example is synthetic only.
-6. Run `python3 scripts/repo_check.py` before pushing.
+1. Run the dependency-free [`synthetic workflow play`](examples/index.html) and follow [`TESTING.md`](TESTING.md).
+2. Read [`DATA_HANDLING.md`](DATA_HANDLING.md) and [`SECURITY.md`](SECURITY.md).
+3. Follow [`docs/review-workflow.md`](docs/review-workflow.md).
+4. Copy [`templates/intake-questionnaire.md`](templates/intake-questionnaire.md) into a secure local order folder **outside this repository**. Do not fill it in here.
+5. Use [`templates/cv-qa-checklist.md`](templates/cv-qa-checklist.md) before delivery.
+6. If a machine-readable order record is needed, create it in secure order storage outside Git using [`schemas/order-manifest.schema.json`](schemas/order-manifest.schema.json). The included example is synthetic only.
+7. Run `python3 scripts/repo_check.py` before pushing.
 
 ## Optional Human Review tool
 
