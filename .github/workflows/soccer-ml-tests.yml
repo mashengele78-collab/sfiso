@@ -1,0 +1,22 @@
+name: Soccer ML tests
+on:
+  push:
+    paths: ["soccer_ml/**", ".github/workflows/soccer-ml-*.yml"]
+  pull_request:
+    paths: ["soccer_ml/**", ".github/workflows/soccer-ml-*.yml"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: soccer_ml/pyproject.toml
+      - working-directory: soccer_ml
+        run: pip install -e '.[dev]'
+      - working-directory: soccer_ml
+        run: ruff check src tests
+      - working-directory: soccer_ml
+        run: pytest --cov=soccer_betway --cov-report=term-missing

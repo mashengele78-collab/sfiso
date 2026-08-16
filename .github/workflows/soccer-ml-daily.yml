@@ -1,0 +1,38 @@
+name: Soccer ML daily predictions
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 5 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: soccer-ml-daily
+  cancel-in-progress: true
+jobs:
+  predict:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: soccer_ml/pyproject.toml
+      - name: Install predictor
+        working-directory: soccer_ml
+        run: pip install -e .
+      - name: Generate live report
+        working-directory: soccer_ml
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          BANKROLL: ${{ secrets.BANKROLL }}
+        run: soccer-betway predict
+      - name: Update dashboard data
+        run: cp soccer_ml/reports/latest.json soccer-ml/latest.json
+      - name: Publish report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add soccer_ml/reports/latest.json soccer_ml/reports/latest.md soccer-ml/latest.json
+          git diff --cached --quiet || git commit -m "chore(soccer-ml): update daily predictions"
+          git push

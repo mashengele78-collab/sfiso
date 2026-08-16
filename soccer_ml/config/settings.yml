@@ -1,0 +1,30 @@
+provider:
+  base_url: https://api.the-odds-api.com/v4
+  bookmaker: betway
+  regions: uk
+  # Featured odds are cheap. Additional markets can cost one request per event.
+  markets: [h2h, totals, btts, draw_no_bet, double_chance]
+  days_ahead: 3
+  request_timeout_seconds: 30
+
+selection:
+  minimum_probability: 0.80
+  minimum_edge: 0.03
+  minimum_consensus_books: 3
+  maximum_odds_age_minutes: 180
+  maximum_decimal_odds: 5.0
+  probability_shrinkage: 0.08
+  confidence_z: 1.28
+  use_lower_confidence_bound: false
+  fractional_kelly: 0.25
+  maximum_bankroll_fraction: 0.02
+
+model:
+  artifact_path: models/calibrator.joblib
+  # If no trained artifact exists, use a conservative no-vig market ensemble.
+  allow_market_baseline: true
+
+report:
+  timezone: Africa/Johannesburg
+  output_json: reports/latest.json
+  output_markdown: reports/latest.md
