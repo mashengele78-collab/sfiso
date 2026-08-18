@@ -1,12 +1,214 @@
 <!doctype html>
-<html lang="en-ZA">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Moved - jobready.za</title>
-<link rel="canonical" href="https://jobreadycv-za.github.io/">
-<meta http-equiv="refresh" content="0; url=https://jobreadycv-za.github.io/">
-<script>location.replace("https://jobreadycv-za.github.io/");</script>
-<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0B1220;color:#e6edf3;display:grid;place-items:center;height:100vh;margin:0;text-align:center}a{color:#C4A265}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f0e9">
+  <meta name="description" content="Turn one portrait and one script into a ready-to-share character video.">
+  <title>Persona — Photo to character video</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body><div><p>This site has moved.</p><p><a href="https://jobreadycv-za.github.io/">jobreadycv-za.github.io</a></p></div></body>
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v5h5M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m4 17 5-4 3 3 3-2 5 4"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 2 1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5zM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7z"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 15v5h16v-5"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M5 10v4h4l5 4V6l-5 4zM17 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Persona home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span></span>
+      <span>Persona</span>
+    </a>
+    <div class="header-meta">
+      <span class="privacy-note"><svg><use href="#i-lock"></use></svg> Your files stay private</span>
+      <button class="text-button" id="demoButton" type="button">Load demo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <p class="eyebrow"><span>01</span> AI character studio</p>
+      <h1 id="pageTitle">Give your story<br><em>a face.</em></h1>
+      <p class="hero-copy">Attach one portrait and your script. Persona turns them into a polished, captioned character video—right in your browser.</p>
+    </section>
+
+    <section class="studio" aria-label="Video creation studio">
+      <div class="setup-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Project setup</p>
+            <h2>Build your performance</h2>
+          </div>
+          <span class="step-count" id="stepCount">0 / 2 ready</span>
+        </div>
+
+        <div class="asset-grid">
+          <section class="asset-section" id="characterSection">
+            <div class="asset-heading">
+              <span class="asset-number">01</span>
+              <div>
+                <h3>Choose your character</h3>
+                <p>Use a clear, front-facing portrait.</p>
+              </div>
+              <span class="ready-check" aria-label="Character ready"><svg><use href="#i-check"></use></svg></span>
+            </div>
+
+            <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+            <div class="drop-zone image-drop" id="imageDrop" role="button" tabindex="0" aria-controls="imageInput">
+              <div class="empty-upload" id="imageEmpty">
+                <span class="upload-icon"><svg><use href="#i-image"></use></svg></span>
+                <div><strong>Drop a portrait here</strong><span>or click to browse · JPG, PNG, WEBP</span></div>
+              </div>
+              <div class="image-loaded" id="imageLoaded" hidden>
+                <img id="imageThumb" alt="Uploaded character preview">
+                <div class="file-details">
+                  <strong id="imageName"></strong>
+                  <span id="imageMeta"></span>
+                </div>
+                <button class="icon-button remove-file" id="removeImage" type="button" aria-label="Remove character"><svg><use href="#i-close"></use></svg></button>
+              </div>
+            </div>
+            <p class="field-error" id="imageError" role="alert"></p>
+          </section>
+
+          <section class="asset-section" id="scriptSection">
+            <div class="asset-heading">
+              <span class="asset-number">02</span>
+              <div>
+                <h3>Add your script</h3>
+                <p>Upload a file or paste the words below.</p>
+              </div>
+              <span class="ready-check" aria-label="Script ready"><svg><use href="#i-check"></use></svg></span>
+            </div>
+
+            <input id="scriptInput" type="file" accept=".txt,.md,.rtf,.docx,.pdf,text/plain,text/markdown,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+            <div class="drop-zone script-drop" id="scriptDrop" role="button" tabindex="0" aria-controls="scriptInput">
+              <span class="upload-icon small"><svg><use href="#i-file"></use></svg></span>
+              <div class="file-details" id="scriptDropText"><strong>Attach your script</strong><span>TXT, MD, RTF, DOCX or PDF · up to 10 MB</span></div>
+              <span class="browse-label">Browse <svg><use href="#i-chevron"></use></svg></span>
+            </div>
+            <div class="script-file" id="scriptFile" hidden>
+              <span class="file-type" id="scriptType">TXT</span>
+              <div class="file-details"><strong id="scriptName"></strong><span id="scriptMeta"></span></div>
+              <button class="icon-button" id="removeScript" type="button" aria-label="Remove script file"><svg><use href="#i-close"></use></svg></button>
+            </div>
+            <p class="field-error" id="scriptError" role="alert"></p>
+
+            <label class="script-editor-label" for="scriptText">Script text <span id="wordCount">0 words</span></label>
+            <textarea id="scriptText" rows="6" maxlength="8000" placeholder="Paste your script here, or upload a file and we’ll read it for you…"></textarea>
+          </section>
+        </div>
+
+        <div class="settings-row">
+          <label class="setting-field">
+            <span>Format</span>
+            <select id="formatSelect">
+              <option value="portrait">Portrait · 9:16</option>
+              <option value="landscape">Landscape · 16:9</option>
+              <option value="square">Square · 1:1</option>
+            </select>
+          </label>
+          <label class="setting-field">
+            <span>Caption style</span>
+            <select id="captionSelect">
+              <option value="minimal">Minimal</option>
+              <option value="bold">Bold social</option>
+              <option value="none">No captions</option>
+            </select>
+          </label>
+          <label class="setting-field">
+            <span>Voice preview</span>
+            <select id="voiceSelect">
+              <option value="">System voice</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="action-row">
+          <div class="estimate">
+            <span class="estimate-dot"></span>
+            <span><strong id="durationEstimate">~ 0 sec</strong> visual draft</span>
+          </div>
+          <button class="generate-button" id="generateButton" type="button" disabled>
+            <span>Generate video</span>
+            <svg><use href="#i-arrow"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <aside class="preview-panel" id="previewPanel">
+        <div class="preview-topbar">
+          <span class="preview-label"><i></i> Live preview</span>
+          <span class="format-badge" id="formatBadge">9:16</span>
+        </div>
+
+        <div class="preview-stage">
+          <div class="preview-frame portrait" id="previewFrame">
+            <div class="preview-placeholder" id="previewPlaceholder">
+              <div class="face-placeholder" aria-hidden="true">
+                <span class="head"></span><span class="body"></span>
+              </div>
+              <p>Your character<br>will appear here</p>
+            </div>
+            <img id="stageImage" alt="" hidden>
+            <div class="stage-scrim"></div>
+            <p class="stage-caption" id="stageCaption" hidden></p>
+            <canvas id="renderCanvas" hidden></canvas>
+            <video id="resultVideo" playsinline hidden></video>
+            <div class="brand-bug">PERSONA <span>●</span></div>
+          </div>
+        </div>
+
+        <div class="generation-overlay" id="generationOverlay" hidden>
+          <div class="generation-mark"><span></span><span></span><span></span></div>
+          <p id="generationStatus">Preparing your character…</p>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <small id="progressText">0%</small>
+        </div>
+
+        <div class="preview-footer">
+          <div class="preview-message" id="previewMessage">
+            <strong>Waiting for your assets</strong>
+            <span>Add a portrait and script to begin.</span>
+          </div>
+          <div class="result-actions" id="resultActions" hidden>
+            <button class="round-button" id="playButton" type="button" aria-label="Play video"><svg><use href="#i-play"></use></svg></button>
+            <button class="round-button" id="speakButton" type="button" aria-label="Play voice preview"><svg><use href="#i-volume"></use></svg></button>
+            <a class="download-button" id="downloadButton" download="persona-video.webm"><svg><use href="#i-download"></use></svg> Download</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="notes-strip" aria-label="Product notes">
+      <div><span>01</span><p><strong>Private by design</strong>Your files are processed in this tab and are never uploaded by this visual-draft portal.</p></div>
+      <div><span>02</span><p><strong>Best portrait</strong>Use even lighting, visible shoulders and a face looking directly at the camera.</p></div>
+      <div><span>03</span><p><strong>Ready to share</strong>Download a captioned WebM draft. Voice preview is played separately using your browser.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><span></span><span></span></span><span>Persona</span></a>
+    <p>One photo. One script. Your next story.</p>
+    <span>Visual draft studio · 2026</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
 </html>
