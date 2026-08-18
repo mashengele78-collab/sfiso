@@ -2,3 +2,6 @@ slip_recap/out/
 __pycache__/
 *.pyc
 .DS_Store
+
+.video-venv/
+.qa/
